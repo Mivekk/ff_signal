@@ -30,20 +30,25 @@ def main():
     
     idx = 3
     
-    plt.plot(data_windows[idx])
+    plt.plot(data_windows[idx], label=["Sequence Line 1", "Sequence Line 2"])
     
     for i in range((data_windows[idx].shape[0] - window_size) // stride + 1):
         data = data_windows[idx][i * stride : i * stride + window_size].reshape(-1, 1)
         prediction = predict(model, data)
         
         if prediction:
-            plt.axvline(i * stride + window_size // 2, color='r', linestyle='--', linewidth=2)
+            plt.axvline(i * stride + window_size // 2, color='r', linestyle='--', linewidth=2, label="Predicted Peaks")
             
     for i in range(len(target_labels[idx])):
         if target_labels[idx][i]:
-            plt.axvline(i, color='g', linestyle='--', linewidth=2)
+            plt.axvline(i, color='g', linestyle='--', linewidth=2, label="True Peaks")
     
-    # plt.legend()
+    handles, labels = plt.gca().get_legend_handles_labels()
+    by_label = dict(zip(labels, handles))
+    plt.legend(by_label.values(), by_label.keys())
+    plt.title("Sequence with Predicted Peaks")
+    plt.xlabel("Time Step")
+    plt.ylabel("Sensor Value")
     plt.show()
 
 if __name__ == "__main__":
