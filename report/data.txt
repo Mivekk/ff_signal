@@ -1,0 +1,13 @@
+window_size = 250, target_window_size = 25, stride = 50, num_epochs = 10
+layers: (input_size, 100), (100, 50), (50, output_size)
+Accuracy: 94.97%
+Precision: 85.67%
+Recall: 66.38%
+F1 Score: 74.80%
+
+window_size = 250, target_window_size = 25, stride = 50, num_epochs = 20
+layers: (input_size, 100), (100, 50), (50, output_size)
+Accuracy: 95.27%
+Precision: 88.52%
+Recall: 66.62%
+F1 Score: 76.02%
